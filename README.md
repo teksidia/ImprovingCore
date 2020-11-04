@@ -14,3 +14,20 @@ course [Improving .NET Core MVC Apps Using Extension Points by Alex Wolf](https:
 ```
 
 Don't forget e.g. ```@addTagHelper *, Globomantics``` in _ViewImports.cshtml
+
+## View Components
+
+* [Logic](https://github.com/teksidia/ImprovingCore/blob/master/Globomantics/Components/CreditCardRatesViewComponent.cs)
+* [View](https://github.com/teksidia/ImprovingCore/blob/master/Globomantics/Views/Shared/Components/CreditCardRates/Default.cshtml)
+
+### Usage
+
+```
+<div class="col-md-4">
+    @await  Component.InvokeAsync("CreditCardRates",
+       new {
+           title = "Credit Card Rates",
+           subtitle = "The best rates around."
+       })
+</div>
+```
