@@ -35,3 +35,38 @@ Don't forget e.g. ```@addTagHelper *, Globomantics``` in _ViewImports.cshtml
 ## Filters
 
 ![filter types](https://raw.githubusercontent.com/teksidia/ImprovingCore/master/_help_resources/filters.PNG)
+
+### IActionFilter
+
+[Example](https://github.com/teksidia/ImprovingCore/blob/master/Globomantics/Filters/ModelValidationFilter.cs) - e.g. for model validation (ModelState.IsValid)
+
+Startup.cs
+```
+services.AddMvc(options =>
+{
+    options.Filters.Add(typeof(ModelValidationFilter));
+});
+```
+
+### IExceptionFilter
+
+[Example](https://github.com/teksidia/ImprovingCore/blob/master/Globomantics/Filters/RateExceptionFilter.cs)
+
+```
+ [RateExceptionFilter]
+ public class RatesApiV2Controller : Controller
+```
+
+### IAuthorizationFilter
+
+Good for feature toggles!
+
+[Example](https://github.com/teksidia/ImprovingCore/blob/master/Globomantics/Filters/FeatureAuthFilter.cs)
+
+To get DI working (for example to inject in feature settings) - use ***TypeFilter*** or ***ServiceFilter***. ServiceFilter offers more flexibility over dependency lifetimes but is more complex, so TypeFilter is the default choice.
+
+```
+[TypeFilter(typeof(FeatureAuthFilter),
+        Arguments = new object[] { "Loan" })]
+    public class LoanController : Controller
+```
