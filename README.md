@@ -31,3 +31,7 @@ Don't forget e.g. ```@addTagHelper *, Globomantics``` in _ViewImports.cshtml
        })
 </div>
 ```
+
+## Filters
+
+![filter types](https://raw.githubusercontent.com/teksidia/ImprovingCore/master/_help_resources/filters.PNG)
