@@ -70,3 +70,9 @@ To get DI working (for example to inject in feature settings) - use ***TypeFilte
         Arguments = new object[] { "Loan" })]
     public class LoanController : Controller
 ```
+
+### IResourceFilter, IResultFilter
+
+***ResultFilter*** runs logic before and after action results (which is separate to actions - ActionFilter). For example you could add additional headers to a result/response.
+
+**ResourceFilter** wraps the MVC lifecycle - a bit like traditional middleware. For example to implement logging, caching, throttling, short circuiting etc
