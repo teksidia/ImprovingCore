@@ -97,3 +97,32 @@ services.AddMvc(options =>
     options.ModelBinderProviders.Insert(0, new SurveyBinderProvider());
 });
 ```
+
+## View Location Expanders
+
+Useful to introduce themes ect
+
+Use [IViewLocationExpander](https://github.com/teksidia/ImprovingCore/blob/master/Globomantics/Theme/ThemeExpander.cs)
+
+Note how config is 'injected' within _PopulateValues()_, as DI cannot be used here
+
+```
+services.Configure<IConfiguration>(Configuration);
+services.Configure<RazorViewEngineOptions>(
+    options => options.ViewLocationExpanders.Add(new ThemeExpander())
+);
+ ```
+
+## Custom Action Results
+
+Useful to render different responses such as CSV instead of Razor View etc
+
+See [example](https://github.com/teksidia/ImprovingCore/blob/master/Globomantics/ActionResults/CsvResult.cs) for a CsvResult
+
+```
+ public IActionResult GetCDRates()
+{
+    var cdRates = rateService.GetCDRates();
+    return new CsvResult(cdRates, "CD Rates");
+}
+```
